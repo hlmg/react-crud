@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+body {
+  background-color: #e0b170;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Noto Sans KR", sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+@media (min-width: 800px) {
+  .App {
+    width: 720px;
+  }
+}
+
+@media (max-width: 800px) {
+  .App {
+    width: 90vw;
+  }
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.Home .content {
+  background-color: white;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.Home .total-amount {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: end;
+}
+
+.Input {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.Input div {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 15px;
+}
+
+.Input div input {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #d3cfcf;
+  border-radius: 3px;
+}
+
+.Item {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #d3cfcf;
+  border-radius: 3px;
+}
+
+.ItemList {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.Button button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  background-color: #8aa358;
+}
