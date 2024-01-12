@@ -1,11 +1,13 @@
 import React from "react";
 import Item from "./Item";
 
-const ItemList = () => {
+const ItemList = ({ expenditureItems }) => {
+  console.log(expenditureItems);
   return (
     <div className={"ItemList"}>
-      <Item />
-      <Item />
+      {expenditureItems.map((item, index) => (
+        <Item key={index} {...item} />
+      ))}
     </div>
   );
 };

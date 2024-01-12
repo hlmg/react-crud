@@ -1,10 +1,10 @@
 import React from "react";
 
-const Item = () => {
+const Item = ({ name, price }) => {
   return (
     <div className={"Item"}>
-      <span>식비</span>
-      <span>7000</span>
+      <span>{name}</span>
+      <span>{price}</span>
       <div>
         <button>수정</button>
         <button>삭제</button>
