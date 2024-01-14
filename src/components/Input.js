@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 
-const Input = ({ onCreate }) => {
-  console.log(onCreate);
-  const [name, setName] = useState();
-  const [price, setPrice] = useState();
+const Input = ({ isEdit, onCreate, onEdit, item }) => {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
 
   const handleSubmit = () => {
     onCreate(name, price);
     setName("");
     setPrice("");
   };
+
+  const handleEdit = () => {
+    onEdit(item.id, name, price);
+    setName("");
+    setPrice("");
+  };
+
+  useEffect(() => {
+    console.log(isEdit);
+    setName(item.name);
+    setPrice(item.price);
+  }, [isEdit, item]);
 
   return (
     <>
@@ -33,7 +44,11 @@ const Input = ({ onCreate }) => {
           />
         </div>
       </div>
-      <Button content={"제출"} onClick={handleSubmit} />
+      {isEdit ? (
+        <Button content={"수정"} onClick={handleEdit} />
+      ) : (
+        <Button content={"제출"} onClick={handleSubmit} />
+      )}
     </>
   );
 };

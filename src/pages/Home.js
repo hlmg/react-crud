@@ -1,32 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Input from "../components/Input";
 import ItemList from "../components/ItemList";
 import Button from "../components/Button";
 
 const dummyData = [
-  { name: "식비", price: 7000 },
-  { name: "교통비", price: 3600 },
-  { name: "관리비", price: 30000 },
+  { id: 0, name: "식비", price: 7000 },
+  { id: 1, name: "교통비", price: 3600 },
+  { id: 2, name: "관리비", price: 30000 },
 ];
 
 const Home = () => {
+  const [item, setItem] = useState({
+    id: "",
+    name: "",
+    price: "",
+  });
   const [expenditureItems, setExpenditureItems] = useState(dummyData);
+  const sequence = useRef(dummyData.length);
+  const [isEdit, setEdit] = useState(false);
 
   const onCreate = (name, price) => {
-    console.log("start oncreate");
-    console.log(name);
-    console.log(price);
-
-    setExpenditureItems([...expenditureItems, { name, price }]);
+    const id = sequence.current;
+    setExpenditureItems([...expenditureItems, { id, name, price }]);
+    sequence.current += 1;
   };
+
+  const onEdit = (id, name, price) => {
+    const items = expenditureItems.map((it) =>
+      it.id === id ? (it = { id: id, name: name, price: price }) : it,
+    );
+    setExpenditureItems(items);
+    setEdit(!isEdit);
+    setItem({});
+  };
+
+  const clickEditButton = (id, name, price) => {
+    setItem({ id, name, price });
+    setEdit(!isEdit);
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <div className={"Home"}>
       <h2>예산 계산기</h2>
       <div className={"content"}>
-        <Input onCreate={onCreate} />
-
-        <ItemList expenditureItems={expenditureItems} />
+        <Input
+          isEdit={isEdit}
+          onCreate={onCreate}
+          onEdit={onEdit}
+          item={item}
+        />
+        <ItemList
+          clickEditButton={clickEditButton}
+          expenditureItems={expenditureItems}
+        />
         <Button content={"목록 지우기"} />
       </div>
       <div className={"total-amount"}>
