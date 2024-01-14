@@ -25,6 +25,11 @@ const Home = () => {
     sequence.current += 1;
   };
 
+  const onDelete = (id) => {
+    const items = expenditureItems.filter((item) => item.id !== id);
+    setExpenditureItems(items);
+  };
+
   const onEdit = (id, name, price) => {
     const items = expenditureItems.map((it) =>
       it.id === id ? (it = { id: id, name: name, price: price }) : it,
@@ -52,6 +57,7 @@ const Home = () => {
           item={item}
         />
         <ItemList
+          onDelete={onDelete}
           clickEditButton={clickEditButton}
           expenditureItems={expenditureItems}
         />
