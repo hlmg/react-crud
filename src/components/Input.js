@@ -18,7 +18,6 @@ const Input = ({ isEdit, onCreate, onEdit, item }) => {
   };
 
   useEffect(() => {
-    console.log(isEdit);
     setName(item.name);
     setPrice(item.price);
   }, [isEdit, item]);

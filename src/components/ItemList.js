@@ -2,7 +2,6 @@ import React from "react";
 import Item from "./Item";
 
 const ItemList = ({ onDelete, clickEditButton, expenditureItems }) => {
-  console.log(expenditureItems);
   return (
     <div className={"ItemList"}>
       {expenditureItems.map((item) => (

@@ -30,13 +30,17 @@ const Home = () => {
     setExpenditureItems(items);
   };
 
+  const deleteAll = () => {
+    setExpenditureItems([]);
+  };
+
   const onEdit = (id, name, price) => {
     const items = expenditureItems.map((it) =>
       it.id === id ? (it = { id: id, name: name, price: price }) : it,
     );
     setExpenditureItems(items);
     setEdit(!isEdit);
-    setItem({});
+    setItem({ id: "", name: "", price: "" });
   };
 
   const clickEditButton = (id, name, price) => {
@@ -61,7 +65,7 @@ const Home = () => {
           clickEditButton={clickEditButton}
           expenditureItems={expenditureItems}
         />
-        <Button content={"목록 지우기"} />
+        <Button onClick={deleteAll} content={"목록 지우기"} />
       </div>
       <div className={"total-amount"}>
         <p>총지출:10600원</p>
